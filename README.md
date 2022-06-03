@@ -1,4 +1,4 @@
-# JetBrainsAcademy
+# Banking Simulator
 A simple banking simulation app
 
 # Features
