@@ -1,11 +1,27 @@
 from random import randint, sample
 import sqlite3
+import os.path
 
 cards = []
 IIN_BANKING = 400000
 conn = sqlite3.connect('card.s3db')
 cur = conn.cursor()
 
+cur.execute(
+"""
+SELECT COUNT(name) FROM sqlite_master WHERE type='table' AND name='card'
+"""
+)
+if cur.fetchone()[0] == 1:
+    print('Table exists')
+else:
+    cur.execute('CREATE TABLE card('
+            '   id INTEGER,'
+            '   number TEXT,'
+            '   pin TEXT,'
+            '   balance INTEGER DEFAULT 0'
+            ');')
+    conn.commit()
 # cur.execute('DROP TABLE card;')
 # conn.commit()
 # cur.execute('CREATE TABLE card('
